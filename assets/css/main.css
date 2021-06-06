@@ -1,0 +1,17 @@
+@import url("fonts/fonts.css");
+
+body {
+	font-family: Montserrat;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: #264653;
+	color: #BFC0C0;
+	margin: 0;
+}
+
+a {
+	color: #EF8354;
+	text-decoration: none;
+}
+
+.navbar{background-color: #2A9D8F!important;padding-top: 0%;padding-bottom: 0%;}
