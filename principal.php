@@ -1,6 +1,11 @@
-<?php include ('assets/includes/header.php');
-include ('assets/includes/Navigation.php');
-if(isset($_POST['identificar'])) {Usuario::identificar($_POST['user'],$_POST['password']);}
-?>
-
-<?php include ('assets/includes/footer.php'); ?>
+<?php 
+if(!isset($_SESSION['level'])) {
+    header('Location: index.php?mensaje=error_identificar');
+} else if ($_SESSION['level'] == 0) {
+    include ('assets/pages/Alumno.php');
+} else if ($_SESSION['level'] == 1) {
+    include ('assets/pages/Profesor.php');
+} else if ($_SESSION['level'] == 2) {
+    include ('assets/pages/Director.php');
+}
+include ('assets/includes/Footer.php');  ?>
