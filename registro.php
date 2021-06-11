@@ -23,7 +23,7 @@ if(isset($_GET['mensaje'])&&($_GET['mensaje']=='error_enUso')){$log_error = "<br
         </div>
         <div class="fila">
             <label for="dni" class="col-sm-4 col-form-label">DNI: </label>
-            <input type="text" name="dni" id="dni" placeholder="00000000X" class="form-control" required>
+            <input type="number" name="dni" id="dni" placeholder="00000000X" class="form-control" required>
         </div>
         <div class="fila">
             <label for="fechaNacimiento" class="col-sm-4 col-form-label">Fecha de nacimiento: </label>
