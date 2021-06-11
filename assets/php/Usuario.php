@@ -5,6 +5,7 @@ class Usuario  {
 
     static public function registrar($nombre, $apellido, $correo, $dni, $fechaNacimiento, $password) {
         $hashpass = password_hash($password, PASSWORD_ARGON2ID);
+        $dni = strtoupper($dni);
         $anyo = DateTime::createFromFormat("d/m/Y", $fechaNacimiento);
         $anyo = $anyo->format('d/m/Y');
         $isRegistered = false;
@@ -42,8 +43,15 @@ class Usuario  {
                 if($row['correo'] == $correo && password_verify($password, $row['password']) == true) {
                     $_SESSION['uid'] = $row['uid'];
                     $_SESSION['correo'] = $row['correo'];
+                    $_SESSION['cargo'] = $row['cargo'];
                     $_SESSION['nivel'] = $row['nivel'];
-                    header('Location: principal.php');
+                    if($row['cargo'] == 0) {
+                        header('Location: principal.php?page=alumno');
+                    } else if ($row['cargo'] == 1) {
+                        header('Location: principal.php?page=profesor');
+                    } else {
+                        header('Location: principal.php?page=director');
+                    }
                 } else {
                     header('Location: index.php?mensaje=error_datosMal');
                 }
