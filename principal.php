@@ -1,5 +1,4 @@
 <?php include ('assets/includes/Header.php'); include ('assets/includes/Navigation.php');
-
 //  testeando el mapeado
 $page = filter_input(INPUT_GET, 'page');
 
