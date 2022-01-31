@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['crear_usuario'])) {Usuario::registrar($_POST['nombre'],$_POST['apellido'],$_POST['correo'],$_POST['dni'],$_POST['fechaNacimiento'],$_POST['password']);}
+if(isset($_POST['crear_usuario'])) {User::registro($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['correo'],$_POST['dni'],$_POST['fechaNacimiento'],$_POST['password'],$_POST['password2'],);}
 $log_error = "";
 if(isset($_GET['mensaje'])&&($_GET['mensaje']=='error_formatoFecha')){$log_error = "<br><br>El formato de fecha es erroneo.";}
 if(isset($_GET['mensaje'])&&($_GET['mensaje']=='error_fechaMayor')){$log_error = "<br><br>¿Has nacido mañana?";}
@@ -38,7 +38,7 @@ if(isset($_GET['mensaje'])&&($_GET['mensaje']=='error_enUso')){$log_error = "<br
         </div>
         <div class="fila">
             <label for="password2" class="col-sm-4 col-form-label">Confirmar contraseña: </label>
-            <input type="password2" name="password2" id="password2" class="form-control" required>
+            <input type="password" name="password2" id="password2" class="form-control" required>
         </div>
         <div class="fila d-flex justify-content-center">
             <input type="submit" value="Registrarse" name="crear_usuario" class="btn btn-primary ">

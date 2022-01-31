@@ -1,4 +1,4 @@
-<?php include("assets/includes/funciones.php"); ?>
+<?php include("assets/includes/pages/user.php"); include("assets/includes/funciones.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
