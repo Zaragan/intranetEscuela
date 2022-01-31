@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Funciones {
 
     static public function validarEmail($email) {

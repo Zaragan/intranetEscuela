@@ -12,7 +12,7 @@
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="assets/php/Desconectar.php">Something else here</a></li>
+                        <li><a class="dropdown-item" href="assets/includes/pages/logout.php">Something else here</a></li>
                     </ul>
                 </li>
             </ul>

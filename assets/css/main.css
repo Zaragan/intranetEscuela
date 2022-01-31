@@ -15,7 +15,8 @@ a {
 }
 
 .navbar{background-color: #2A9D8F!important; padding-top: 0%; padding-bottom: 0%;}
-.login{display: flex; justify-content: center; margin: 60px 0;}
+.login{display: flex; justify-content: center; margin: 30px 0;}
 .login > form{width: 40%; padding: 30px; border: 3px solid black; border-radius: 15px;}
 .fila{display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;}
 .fila:last-child{margin-bottom: 0;}
+.alert{margin-bottom: 0;} 
