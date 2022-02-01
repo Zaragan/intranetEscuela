@@ -14,5 +14,23 @@
         <a href="index.php?page=register" class="btn btn-primary">Registrarse</a>
         <input type="submit" value="Identificar" name="identificar" class="btn btn-primary">
         </div>
+        <?php
+            if (isset($_GET['message'])) {
+                switch ($_GET['message']) {
+                    case 'registrado':
+                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Identifícate ahora.</div>';
+                        break;
+                    case 'errorUnknownUser':
+                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El usuario no existe.</div>';
+                        break;
+                    case 'errorAutentication':
+                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El correo o la contraseña no son correctas.</div>';
+                        break;
+                    default:
+                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Que tramas, moreno?</div>';
+                        break;
+                }
+            }
+        ?>
     </form>
 </div>
