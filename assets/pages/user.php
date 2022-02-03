@@ -19,7 +19,7 @@ class User {
             $registrado = true;
         } else {
             $user = Database::addQuery("SELECT correo FROM usuarios", null);
-            foreach($user as $row) {
+            foreach($user[0] as $row) {
                 if($row['correo']==$correo) {
                     $registrado = true;
                     header('Location: index.php?page=register&message=errorUsed');
@@ -27,17 +27,34 @@ class User {
                 }
             }
             if($registrado == false) {
-                Database::addquery("INSERT INTO `usuarios`(`nombre`,`primerapellido`,`segundoapellido`,`correo`,`nacimiento`,`dni`,`clave`,`creado`)
+                $test = Database::addquery("INSERT INTO `usuarios`(`nombre`,`primerapellido`,`segundoapellido`,`correo`,`nacimiento`,`dni`,`clave`,`creado`)
                                     VALUES ('$nombre','$primerApellido','$segundoApellido','$correo','$nacimiento','$dni','$hasspass','$creado')", null);
+                Database::addQuery("INSERT INTO `materias`(`userid`,`ingles`,`tecnologia`,`naturales`,`sogehi`,`musica`,`efisica`,`matematicas`,`lenguaje`)
+                                    VALUES ('$test[1]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)", null);
                 header('Location: index.php?page=login&message=registrado');
             }
         }
-
     }
 
-
-
-
+    static public function identificar($correo, $password) {
+        if(Funciones::validarEmail($correo) == true) {
+            $usuario = Database::addQuery("SELECT * from `usuarios` WHERE correo=?", $correo);
+            if (password_verify($password, $usuario[0][0]['clave']) == true) {
+                $_SESSION['usuario'] = $usuario[0][0];
+                print_r($_SESSION[0]['correo']);
+            }
+            /*foreach ($usuario as $row) {
+                    $_SESSION['usuario'] = array($usuario);
+                    print_r($_SESSION['usuario']);
+                    /*$_SESSION['id'] = $row['id'];
+                    $_SESSION['accesslevel'] = $row['accesslevel'];
+                    $_SESSION['nombre'] = ucfirst($row['nombre']);
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['id'] = $row['id'];
+                }
+            }*/
+        }
+    }
 }
 
 ?>

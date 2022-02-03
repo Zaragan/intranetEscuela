@@ -1,4 +1,4 @@
-<?php if(isset($_POST['identificar'])) {Usuario::identificar($_POST['user'], $_POST['password']);} ?>
+<?php if(isset($_POST['identificar'])) {User::identificar($_POST['user'], $_POST['password']);} ?>
 <h1 style="text-align: center; margin-top: 45px;">Identifícate</h1><br />
 <div class="login">
     <form method="post">

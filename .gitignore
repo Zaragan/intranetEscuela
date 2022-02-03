@@ -1,4 +1,4 @@
 .gitattributes
 .git
-assets/includes/cfg/settings.ini
-assets/includes/cfg/pdo.php
+assets/cfg/settings.ini
+assets/cfg/pdo.php
