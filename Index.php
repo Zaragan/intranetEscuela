@@ -2,24 +2,8 @@
 
 $page = filter_input(INPUT_GET, 'page');
 
-/*if(is_null($page) XOR !isset($_SESSION['accesslevel'])){
-    header('Location: index.php?page=login');
-} else {
-    switch ($_SESSION['accesslevel']) {
-    case 3:
-        header('Location: index.php?page=director');
-        break;
-    case 2:
-        header('Location: index.php?page=profesor');
-        break;
-    case 1:
-        header('Location: index.php?page=alumno');
-        break;
-    }
-}*/
-
-if (is_null($page XOR !isset($_SESSION))) {
-    header('Location: index.php?page=login');
+if(is_null($page)) {
+    header('Location: index.php?page=login');  
 }
 
 $page = strtr(

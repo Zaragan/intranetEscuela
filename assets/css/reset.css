@@ -58,10 +58,6 @@ th, td {
   border-bottom: 1px solid rgb(0, 0, 0);
 }
 td {padding: 0px;}
-td:last-of-type{
-	border-bottom: 1px solid rgb(0, 0, 0);
-	border-top: 1px solid black;
-}
 
 
 /*                      fin resets                  */
