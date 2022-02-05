@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['register'])) {Users::register($_POST['name'],$_POST['surname'],$_POST['surname2'],$_POST['email'],$_POST['dob'],$_POST['dni'],$_POST['password'],$_POST['password2']);}
+if(isset($_POST['register'])) {Users::register($_POST['name'],$_POST['surname'],$_POST['surname2'],$_POST['email'],$_POST['dob'],$_POST['dni'],$_POST['password'],$_POST['password2'],$_POST['access']);}
 ?>
 <h1 style="text-align: center; margin-top: 45px;">Registro</h1><br />
 <div class="login">
@@ -36,6 +36,16 @@ if(isset($_POST['register'])) {Users::register($_POST['name'],$_POST['surname'],
             <label for="password2" class="col-sm-4 col-form-label">Confirmar contraseña: </label>
             <input type="password" name="password2" class="form-control" required>
         </div>
+        <!-- OBVIAMENTE ESTA OPCION NO DEBE ESTAR DISPONIBLE EN PRODUCCION -->
+        <div class="crow">
+            <label for="access" class="col-sm-4 col-form-label">Selecciona un rango:</label>
+            <select name="access" class="form-control">
+                <option value="1">Director</option>
+                <option value="2">Profesor</option>
+                <option value="3" selected>Alumno</option>
+            </select>
+        </div>
+        <!-- POR DIOS NO OLVIDES DE BORRAR ESTA OPCION -->
         <div class="crow d-flex justify-content-center">
             <input type="submit" value="Registrarse" name="register" class="btn btn-primary ">
         </div>

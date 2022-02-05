@@ -1,0 +1,4 @@
+<?php 
+include('assets/includes/nav.php');
+if ($_SESSION['user']['access'] != 2) {session_start();session_unset();session_destroy();session_write_close();setcookie(session_name(),'',0,'/');header('Location: index.php?page=login&message=errorPermissions');}
+?>

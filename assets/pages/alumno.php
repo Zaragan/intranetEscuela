@@ -1,81 +1,76 @@
 <?php 
 include('assets/includes/nav.php');
-if ($_SESSION['user']['accesslevel'] != 3) {session_start();session_unset();session_destroy();session_write_close();setcookie(session_name(),'',0,'/');header('Location: index.php?page=login&message=errorPermissions');}
+if ($_SESSION['user']['access'] != 3) {session_start();session_unset();session_destroy();session_write_close();setcookie(session_name(),'',0,'/');header('Location: index.php?page=login&message=errorPermissions');}
+$profileData = Database::getUser($_SESSION['user']['email']);
+$profileGrades = Database::getGrades($_SESSION['user']['id']);
 ?>
 <h1 style="text-align: center; margin-top: 45px;">Detalles del alumno</h1><br />
-<div class="container border border-dark border-2 rounded-2 d-flex">
-    <div class="container">
+<div class="container border border-dark border-2 rounded-2 cter">
+
         <table class="table table-sm caption-top">
         <caption>Datos personales</caption>
         <tbody>
             <tr>
-                <th>Nombre</th>
-                <td>test</td>
+                <td>Nombre</td>
+                <td><?php echo $profileData['name'] ?></td>
             </tr>
             <tr>
-                <th>Primer apellido</th>
-                <td>Jacob</td>
+                <td>Apellidos</td>
+                <td><?php echo $profileData['surname'] .' '. $profileData['surname2'] ?></td>
             </tr>
             <tr>
-                <th>Segundo apellido</th>
-                <td>Larry the Bird</td>
+                <td>Correo</td>
+                <td><?php echo $profileData['email'] ?></td>
             </tr>
             <tr>
-                <th>Correo</th>
-                <td>test</td>
+                <td>Nacido en</td>
+                <td><?php echo $profileData['dob'] ?></td>
             </tr>
             <tr>
-                <th>Nacido en</th>
-                <td>Jacob</td>
+                <td>D.N.I.</td>
+                <td><?php echo $profileData['dni'] ?></td>
             </tr>
             <tr>
-                <th>D.N.I.</th>
-                <td>Larry the Bird</td>
-            </tr>
-            <tr>
-                <th>Curso</th>
-                <td>Larry the Bird</td>
+                <td>Curso</td>
+                <td><?php echo $profileData['course'] ?></td>
             </tr>
         </tbody>
-        </table>
-    </div>
-    <div class="container">
+    </table>
         <table class="table table-sm caption-top">
         <caption>Notas</caption>
             <tbody>
                 <tr>
-                    <th>Inglés</th>
-                    <td>test</td>
+                    <td>Inglés</td>
+                    <td><?php echo $profileGrades['english'] ?></td>
                 </tr>
                 <tr>
-                    <th>Tecnología</th>
-                    <td>Jacob</td>
+                    <td>Tecnología</td>
+                    <td><?php echo $profileGrades['tech'] ?></td>
                 </tr>
                 <tr>
-                    <th>Naturaleza</th>
-                    <td>Larry the Bird</td>
+                    <td>Naturaleza</td>
+                    <td><?php echo $profileGrades['nature'] ?></td>
                 </tr>
                 <tr>
-                    <th>Sociales/Geografía/Historia</th>
-                    <td>test</td>
+                    <td>Sociales/Geografía/Historia</td>
+                    <td><?php echo $profileGrades['sogehi'] ?></td>
                 </tr>
                 <tr>
-                    <th>Música</th>
-                    <td>Jacob</td>
+                    <td>Música</td>
+                    <td><?php echo $profileGrades['music'] ?></td>
                 </tr>
                 <tr>
-                    <th>Educación Física</th>
-                    <td>Jacob</td>
+                    <td>Educación Física</td>
+                    <td><?php echo $profileGrades['physical'] ?></td>
                 </tr>
                 <tr>
-                    <th>Matemáticas</th>
-                    <td>Larry the Bird</td>
+                    <td>Matemáticas</td>
+                    <td><?php echo $profileGrades['math'] ?></td>
                 </tr>
                 <tr>
-                    <th>Lenguaje</th>
-                    <td>Larry the Bird</td>
+                    <td>Lenguaje</td>
+                    <td><?php echo $profileGrades['language'] ?></td>
                 </tr>
             </tbody>
         </table>
-    </div>
 </div>

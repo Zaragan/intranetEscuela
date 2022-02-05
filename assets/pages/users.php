@@ -2,7 +2,12 @@
 include_once("assets/cfg/pdo.php");
 class Users {
 
-    static public function register($name, $surname, $surname2, $email, $dob, $dni, $password, $password2) {
+    static public function test($rank, $id) {
+        Database::addQuery("UPDATE users SET access='$rank' WHERE email='$id'", null);
+        header('Location: index.php?page?logout');
+    }
+
+    static public function register($name, $surname, $surname2, $email, $dob, $dni, $password, $password2, $access) {
         if($password != $password2) {header('Location: index.php?page=register&message=errorPasswordMatch');}
         $hasspass = password_hash($password, PASSWORD_ARGON2ID);
         $dni = strtoupper($dni);
@@ -23,7 +28,7 @@ class Users {
             header('Location: index.php?page=register&message=errorBirthDate');
             $registered = true;
         } else {
-            $users = Database::selectUsers();
+            $users = Database::getUsers();
             foreach($users as $row) {
                 if($row['email'] == $email) {
                     $registered = true;
@@ -32,7 +37,7 @@ class Users {
                 }
             }
             if($registered == false) {
-                Database::addUser("$name","$surname","$surname2","$email","$dob","$dni","$hasspass","$created");
+                Database::addUser("$name","$surname","$surname2","$email","$dob","$dni","$hasspass","$created", "$access");
                 header('Location: index.php?page=login&message=registered');
             }
         }
@@ -40,10 +45,10 @@ class Users {
 
     static public function logIn($email, $password) {
         if(Functions::validateEmail($email) == true) {
-            $user = Database::selectUser($email);
+            $user = Database::getUser($email);
             if ($user['email'] == $email && password_verify($password, $user['password']) == true) {
                 $_SESSION['user'] = $user;
-                switch ($_SESSION['user']['accesslevel']) {
+                switch ($_SESSION['user']['access']) {
                     case 1:
                         header('Location: index.php?page=director');
                         break;
