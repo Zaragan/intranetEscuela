@@ -28,7 +28,7 @@ class Users {
             header('Location: index.php?page=register&message=errorBirthDate');
             $registered = true;
         } else {
-            $users = Database::getUsers();
+            $users = Database::getEmailUsers();
             foreach($users as $row) {
                 if($row['email'] == $email) {
                     $registered = true;
@@ -45,7 +45,7 @@ class Users {
 
     static public function logIn($email, $password) {
         if(Functions::validateEmail($email) == true) {
-            $user = Database::getUser($email);
+            $user = Database::getUserByEmail($email);
             if ($user['email'] == $email && password_verify($password, $user['password']) == true) {
                 $_SESSION['user'] = $user;
                 switch ($_SESSION['user']['access']) {
@@ -67,6 +67,3 @@ class Users {
         }
     }
 }
-
-?>
-

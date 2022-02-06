@@ -1,5 +1,7 @@
 <?php
-if(isset($_POST['register'])) {Users::register($_POST['name'],$_POST['surname'],$_POST['surname2'],$_POST['email'],$_POST['dob'],$_POST['dni'],$_POST['password'],$_POST['password2'],$_POST['access']);}
+if (isset($_POST['register'])) {
+    Users::register($_POST['name'], $_POST['surname'], $_POST['surname2'], $_POST['email'], $_POST['dob'], $_POST['dni'], $_POST['password'], $_POST['password2'], $_POST['access']);
+}
 ?>
 <h1 style="text-align: center; margin-top: 45px;">Registro</h1><br />
 <div class="login">
@@ -50,30 +52,30 @@ if(isset($_POST['register'])) {Users::register($_POST['name'],$_POST['surname'],
             <input type="submit" value="Registrarse" name="register" class="btn btn-primary ">
         </div>
         <?php
-            if (isset($_GET['message'])) {
-                switch ($_GET['message']) {
-                    case 'errorEmailFormat':
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El formato del email es erroneo.</div>';
-                        break;
-                    case 'errorDateFormat':
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El formato de fecha es erroneo.</div>';
-                        break;
-                    case 'errorBirthDate':
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Has nacido en el futuro?.</div>';
-                        break;
-                    case 'errorUsed':
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El email ya está en uso.</div>';
-                        break;
-                    case 'errorPasswordMatch':
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Las contraseñas no coinciden.</div>';
-                        break;
-                    default:
-                        echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Que tramas, moreno?</div>';
-                        break;
-                }
+        if (isset($_GET['message'])) {
+            switch ($_GET['message']) {
+                case 'errorEmailFormat':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El formato del email es erroneo.</div>';
+                    break;
+                case 'errorDateFormat':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El formato de fecha es erroneo.</div>';
+                    break;
+                case 'errorBirthDate':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Has nacido en el futuro?.</div>';
+                    break;
+                case 'errorUsed':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">El email ya está en uso.</div>';
+                    break;
+                case 'errorPasswordMatch':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Las contraseñas no coinciden.</div>';
+                    break;
+                default:
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Que tramas, moreno?</div>';
+                    break;
             }
+        }
         ?>
     </form>
 </div>
 <p style="text-align:center">¿Ya estas registrado?<br><br><a href="index.php?page=login" class="btn btn-primary">Identifícate</a></p>
-<?php include ('assets/includes/footer.php');?>
+<?php include('assets/includes/footer.php'); ?>
