@@ -8,4 +8,3 @@ if ($_SESSION['user']['access'] != 1) {
     setcookie(session_name(), '', 0, '/');
     header('Location: index.php?page=login&message=errorPermissions');
 }
-?>
