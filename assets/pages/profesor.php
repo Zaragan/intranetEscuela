@@ -37,23 +37,16 @@ if (isset($_POST['send'])) {
 }
 
 if (isset($_POST['student'])) {
-    $data = Database::getUserGrades($_POST['id']);
-    echo "<div class='container border border-dark border-2 rounded-2 cter mt-4'><table class='table table-sm caption-top tdata'><caption>Lista de notas</caption><tbody><tr><td>Inglés</td><td>Tecnología</td><td>Naturaleza</td><td>Sociales/Geografía/Historia</td><td>Música</td><td>Educación Física</td><td>Matemáticas</td><td>Lenguaje</td></tr>";
-    echo "<tr><td>" . $data['english'] . "</td><td>" . $data['tech'] . "</td><td>" . $data['nature'] . "</td><td>" . $data['sogehi'] . "</td><td>" . $data['music'] . "</td><td>" . $data['physical'] . "</td><td>" . $data['math'] . "</td><td>" . $data['language'] . "</td></tr>";
+    $data = Database::getUserGrades($_SESSION['user']['clase'], $_POST['id']);
+    echo "<div class='container border border-dark border-2 rounded-2 cter mt-4'><table class='table table-sm caption-top tdata'><caption>Lista de notas</caption><tbody><tr><td>" . $_SESSION['user']['clase'] . "</td><td>Modificar</td></tr>";
+    echo "<tr><td><form method='post' class='container'><input type='hidden' name='id' value='" . $_POST['id'] . "' readonly></input>
+    <input type='number' name='note' value='" . $data[$_SESSION['user']['clase']] . "'></input></td><td>
+    <input type='submit' value='Modificar' name='sendNote' class='btn btn-secondary btn-sm'></input></form></td></tr>";
     echo "</tbody></table></div>";
 }
 
-if (isset($_GET['message'])) {
-    switch ($_GET['message']) {
-        case 'errorSelectCourse':
-            echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Selecciona un curso.</div>';
-            break;
-
-        default:
-            echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Que tramas, moreno?</div>';
-            break;
-    }
+if(isset($_POST['sendNote'])) { 
+    Database::modifyNote($_SESSION['user']['clase'], $_POST['note'], $_POST['id']);
 }
-
 
 ?>
