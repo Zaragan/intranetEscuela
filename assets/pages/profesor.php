@@ -26,22 +26,16 @@ if ($_SESSION['user']['access'] != 2) {
 <?php
 if (isset($_POST['send'])) {
     $data = Database::getDataForLevel2($_POST['curso']);
-    echo "<div class='container border border-dark border-2 rounded-2 cter mt-4'><table class='table table-sm caption-top'><caption>Lista de alumnos</caption><tbody><tr><td>Nombre</td><td>Apellidos</td><td>email</td><td>Modificar</td></tr>";
+    $info = Database::getOneGrade($_SESSION['user']['clase']);
+    echo "<div class='container border border-dark border-2 rounded-2 cter mt-4'><table class='table table-sm caption-top'><caption>Lista de alumnos</caption><tbody><tr><td>Nombre</td><td>Apellidos</td><td>email</td><td>Nota</td><td>Modificar</td></tr>";
     foreach ($data as $key => $value) {
         echo "<tr><td>" . $data[$key]['name'] . "</td>
         <td>" . $data[$key]['surname'] . " " . $data[$key]['surname2'] . "</td>
         <td>" . $data[$key]['email'] . "</td>
-        <td><form method='post' class='container'><input type='hidden' name='id' value='" . $data[$key]['id'] . "' readonly></input><input type='submit' value='Modificar' name='student' class='btn btn-secondary btn-sm'></input></form></td></tr>";
+        <form method='post' class='container'><input type='hidden' name='id' value='" . $data[$key]['id'] . "' readonly></input>
+        <td><input type='number' name='note' value='" . $info[$key][0] . "'></input></td>
+        <td><input type='submit' value='Modificar' name='sendNote' class='btn btn-secondary btn-sm'></input></form></td></tr>";
     }
-    echo "</tbody></table></div>";
-}
-
-if (isset($_POST['student'])) {
-    $data = Database::getUserGrades($_SESSION['user']['clase'], $_POST['id']);
-    echo "<div class='container border border-dark border-2 rounded-2 cter mt-4'><table class='table table-sm caption-top tdata'><caption>Lista de notas</caption><tbody><tr><td>" . $_SESSION['user']['clase'] . "</td><td>Modificar</td></tr>";
-    echo "<tr><td><form method='post' class='container'><input type='hidden' name='id' value='" . $_POST['id'] . "' readonly></input>
-    <input type='number' name='note' value='" . $data[$_SESSION['user']['clase']] . "'></input></td><td>
-    <input type='submit' value='Modificar' name='sendNote' class='btn btn-secondary btn-sm'></input></form></td></tr>";
     echo "</tbody></table></div>";
 }
 
