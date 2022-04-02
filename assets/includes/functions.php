@@ -2,6 +2,21 @@
 session_start();
 class Functions
 {
+    static public function uuid($data = null) {
+        $data = $data ?? random_bytes(16);
+        assert(strlen($data) == 16);
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+        $tempUuid = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+        $result = Database::getAllUuid();
+        foreach ($result as $key => $value) {
+            if($tempUuid == $value['uuid']) {
+                Functions::uuid();
+            } else {
+                return $tempUuid;
+            }
+        }        
+    }
 
     static public function validateEmail($email)
     {
@@ -68,13 +83,14 @@ class Functions
         $haspass = password_hash("12", PASSWORD_ARGON2ID);
 
         for ($i = 0; $i < $number; $i++) {
+            $uuid = Functions::uuid();
             $arrayName = array_rand($names);
             $arraySurname = array_rand($surname);
             $arraySurname2 = array_rand($surname2);
             array_push($email, $names[$arrayName] . $surname[$arraySurname] . '@gmail.com');
             array_push($dob, Functions::randomDate('01/01/1990', '01/01/2000'));
             array_push($dni, Functions::randomDni());
-            return Database::addUser($names[$arrayName],$surname[$arraySurname],$surname2[$arraySurname2],$email[$i],$dob[$i],$dni[$i],$haspass,$created,'3');
+            Database::addUser($uuid,$names[$arrayName],$surname[$arraySurname],$surname2[$arraySurname2],$email[$i],$dob[$i],$dni[$i],$haspass,$created,'3');
         }
     }
 }

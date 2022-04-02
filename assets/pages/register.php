@@ -69,6 +69,9 @@ if (isset($_POST['register'])) {
                 case 'errorPasswordMatch':
                     echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Las contraseñas no coinciden.</div>';
                     break;
+                case 'errorNewUser':
+                    echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">Ha ocurrido un error, inténtalo de nuevo.</div>';
+                    break;
                 default:
                     echo '<div class="alert alert-warning d-flex justify-content-center" role="alert">¿Que tramas, moreno?</div>';
                     break;

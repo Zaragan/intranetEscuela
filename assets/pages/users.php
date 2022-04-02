@@ -17,9 +17,10 @@ class Users {
         $name = Functions::formatName($name);
         $surname = Functions::formatName($surname);
         $surname2 = Functions::formatName($surname2);
+        $uuid = Functions::uuid();
 
         if(Functions::validateEmail($email) != true) {
-            header('Location: index.php=?page=register&message=errorEmailFormat');
+            header('Location: index.php?page=register&message=errorEmailFormat');
             $registered = true;
         } else if (Functions::validateDate($dob) === 0) {
             header('Location: index.php?page=register&message=errorDateFormat');
@@ -37,7 +38,7 @@ class Users {
                 }
             }
             if($registered == false) {
-                Database::addUser("$name","$surname","$surname2","$email","$dob","$dni","$hasspass","$created", "$access");
+                Database::addUser("$uuid","$name","$surname","$surname2","$email","$dob","$dni","$hasspass","$created", "$access");
                 header('Location: index.php?page=login&message=registered');
             }
         }

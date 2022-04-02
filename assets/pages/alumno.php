@@ -9,7 +9,7 @@ if ($_SESSION['user']['access'] != 3) {
     header('Location: index.php?page=login&message=errorPermissions');
 }
 $profileData = Database::getUserByEmail($_SESSION['user']['email']);
-$profileGrades = Database::getGrades($_SESSION['user']['id']);
+$profileGrades = Database::getOneGrade($_SESSION['user']['id']);
 ?>
 <h1 style="text-align: center; margin-top: 45px;">Detalles del alumno</h1><br />
 <div class="container border border-dark border-2 rounded-2 cter">
